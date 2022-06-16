@@ -11,6 +11,8 @@ return [
     | API, giving you convenient access to each back-end using the same
     | syntax for every one. Here you may define a default connection.
     |
+    | Supported: "sync", "database", "beanstalkd", "sqs", "redis", "null"
+    |
     */
 
     'default' => env('QUEUE_CONNECTION', 'sync'),
@@ -25,7 +27,7 @@ return [
     | for each back-end shipped with Laravel. You are free to add more.
     |
     | Drivers: "sync", "database", "beanstalkd", "sqs", "redis", "null"
-    |
+
     */
 
     'connections' => [
