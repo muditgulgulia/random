@@ -2,10 +2,11 @@
 
 namespace App\Http\Middleware;
 
+use App\ACME\Admin\AdminHelper;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 
-class RedirectIfAuthenticated
+class RedirectIfAuthenticated extends AdminHelper
 {
     /**
      * Handle an incoming request.
@@ -18,9 +19,14 @@ class RedirectIfAuthenticated
     public function handle($request, Closure $next, $guard = null)
     {
         if (Auth::guard($guard)->check()) {
-            return redirect('/home');
+            if ($this->authenticateUser() == 1) {
+                return redirect('admin/');
+            }
+
+            return redirect('login');
         }
 
         return $next($request);
     }
+
 }
